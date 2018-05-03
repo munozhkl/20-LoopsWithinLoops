@@ -153,22 +153,25 @@ def draw_wall_on_right(rectangle, n, window):
     # TODO: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
-    og_rect_ul = rectangle.corner_1
-    og_rect_lr = rectangle.corner_2
-    ul = og_rect_ul
-    lr = og_rect_lr
+    og_rect_ul = rectangle.get_upper_left_corner()
+    og_rect_lr = rectangle.get_lower_right_corner()
+    ul = rg.Point(og_rect_ul.x, og_rect_ul.y)
+    lr = rg.Point(og_rect_lr.x, og_rect_lr.y)
     for j in range(n):
         for k in range(j + 1):
             new_rect = rg.Rectangle(ul, lr)
+            print(ul.x)
             new_rect.attach_to(window)
             window.render(0.2)
             ul.x = ul.x - rectangle.get_width()
             lr.x = lr.x - rectangle.get_width()
         ul.x = og_rect_ul.x
-        ul.y = ul.y + rectangle.get_height()*(j + 1)
+        print(j, ul.x)
+        ul.y = ul.y + rectangle.get_height()
         lr.x = og_rect_lr.x
-        lr.y = lr.y + rectangle.get_height()*(j + 1)
+        lr.y = lr.y + rectangle.get_height()
         ul = rg.Point(ul.x, ul.y)
+        print(j, ul.x)
         lr = rg.Point(lr.x, lr.y)
 
 

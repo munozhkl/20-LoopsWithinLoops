@@ -119,8 +119,10 @@ def triangle_of_stars(r):
     #   in this or the other problems in this module, as doing so
     #   would defeat the goal of providing practice at loops within loops.
     # ------------------------------------------------------------------
+
+
     for k in range(r):
-        for j in range(k+1):
+        for j in range(k + 1):
             print('*', end='')
         print()
 
