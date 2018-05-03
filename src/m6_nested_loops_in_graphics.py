@@ -11,7 +11,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the other functions to demonstrate them. """
-    run_test_draw_L()
+    #run_test_draw_L()
     run_test_draw_wall_on_right()
 
 
@@ -80,9 +80,38 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # done: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    original_x = circle.center.x
+    original_y = circle.center.y
+    radius = circle.radius
+
+    x = original_x
+    y = original_y
+    for i in range(r):  # Loop through the rows
+        for j in range(3):  # Loop through the columns
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render(0.3)
+            x = x + (2 * radius)
+        y = y + 2 * radius
+        x = original_x
+
+    for k in range(3):
+        for l in range(3 + c):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render(0.3)
+            x = x + 2*radius
+        y = y + 2*radius
+        x = original_x
+
+
+
 
 
 def run_test_draw_wall_on_right():
@@ -124,6 +153,25 @@ def draw_wall_on_right(rectangle, n, window):
     # TODO: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    og_rect_ul = rectangle.corner_1
+    og_rect_lr = rectangle.corner_2
+    ul = og_rect_ul
+    lr = og_rect_lr
+    for j in range(n):
+        for k in range(j + 1):
+            new_rect = rg.Rectangle(ul, lr)
+            new_rect.attach_to(window)
+            window.render(0.2)
+            ul.x = ul.x - rectangle.get_width()
+            lr.x = lr.x - rectangle.get_width()
+        ul.x = og_rect_ul.x
+        ul.y = ul.y + rectangle.get_height()*(j + 1)
+        lr.x = og_rect_lr.x
+        lr.y = lr.y + rectangle.get_height()*(j + 1)
+        ul = rg.Point(ul.x, ul.y)
+        lr = rg.Point(lr.x, lr.y)
+
+
 
 
 # ----------------------------------------------------------------------
